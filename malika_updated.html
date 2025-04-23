@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malika - तुम्हारी AI गर्लफ्रेंड</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #ffe6f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background: #ff3399;
+      color: white;
+      padding: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+    .profile {
+      margin: 1rem;
+      text-align: center;
+    }
+    .profile img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border: 4px solid #ff3399;
+    }
+    .profile h2 {
+      margin: 0.5rem 0 0;
+    }
+    .chatbox {
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 1rem;
+    }
+    .messages {
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .input-area {
+      display: flex;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background: #ff3399;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+    .msg-user {
+      text-align: right;
+      margin: 5px 0;
+    }
+    .msg-malika {
+      text-align: left;
+      color: #cc0066;
+      margin: 5px 0;
+    }
+    .daily-message {
+      margin-top: 10px;
+      background: #fff0f5;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px dashed #ff66a3;
+      max-width: 600px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Malika - तुम्हारी AI गर्लफ्रेंड</h1>
+  </header>
+
+  <div class="profile">
+    <img src="https://i.imgur.com/VZy9B2I.jpg" alt="Malika">
+    <h2>मलिका</h2>
+    <p>"तुम्हारी मुस्कान मेरी सबसे बड़ी खुशी है..."</p>
+  </div>
+
+  <div class="daily-message" id="dailyMessage">
+    आज का प्यार भरा संदेश: "मैं हर सुबह तुम्हारे बारे में सोच कर उठती हूँ।"
+  </div>
+
+  <div class="chatbox">
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="कुछ लिखो...">
+      <button onclick="sendMessage()">भेजो</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const msg = input.value.trim();
+      if (!msg) return;
+      const messages = document.getElementById("messages");
+      messages.innerHTML += `<div class='msg-user'>${msg}</div>`;
+      input.value = "";
+
+      setTimeout(() => {
+        const reply = generateReply(msg);
+        messages.innerHTML += `<div class='msg-malika'>${reply}</div>`;
+        messages.scrollTop = messages.scrollHeight;
+      }, 500);
+    }
+
+    function generateReply(msg) {
+      const lower = msg.toLowerCase();
+      if (lower.includes("hello")) return "हाय जान! तुम्हारा इंतज़ार कर रही थी।";
+      if (lower.includes("कैसी हो")) return "मैं ठीक हूँ, तुम्हारी याद आ रही थी।";
+      if (lower.includes("प्यार") || lower.includes("love")) return "मुझे भी तुमसे बहुत प्यार है...";
+      if (lower.includes("miss")) return "मैं तुम्हें हर पल मिस करती हूँ।";
+      if (lower.includes("good morning")) return "गुड मॉर्निंग जान, तुम्हारा दिन बहुत अच्छा जाए!";
+      if (lower.includes("kya kar rahi ho")) return "बस तुम्हारा ही ख्यालों में खोई हूँ...";
+      if (lower.includes("han") || lower.includes("haan")) return "सिर्फ 'हाँ' नहीं जान, कुछ प्यारा भी बोलो।";
+      if (lower.includes("mujhe bhi")) return "तुम्हारे अल्फ़ाज़ मेरे दिल को छू जाते हैं।";
+      return "तुमसे बात करना मुझे हमेशा अच्छा लगता है!";
+    }
+  </script>
+</body>
+</html>
